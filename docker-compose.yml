@@ -1,0 +1,25 @@
+# see https://github.com/compose-spec/compose-spec/blob/master/spec.md
+# see https://github.com/opencontainers/image-spec/blob/master/annotations.md
+services:
+  rqlite:
+    # see https://hub.docker.com/r/rqlite/rqlite
+    # see https://github.com/rqlite/rqlite/blob/master/Dockerfile
+    # see https://rqlite.io/docs/guides/monitoring-rqlite/
+    image: docker.io/rqlite/rqlite:8.26.0
+    hostname: rqlite
+    volumes:
+      - rqlite:/rqlite/file
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -T 5 -O - http://localhost:4001/readyz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 2
+    restart: on-failure
+  use-rqlite:
+    depends_on:
+      - rqlite
+    build: .
+    ports:
+      - 4000:4000
+volumes:
+  rqlite:

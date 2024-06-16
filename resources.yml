@@ -1,0 +1,72 @@
+---
+# see https://kubernetes.io/docs/concepts/services-networking/service/
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#service-v1-core
+# see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/initial-design.md
+# see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/ttl.md
+apiVersion: v1
+kind: Service
+metadata:
+  name: use-rqlite-go
+spec:
+  selector:
+    app: use-rqlite-go
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+---
+# see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deployment-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: use-rqlite-go
+spec:
+  selector:
+    matchLabels:
+      app: use-rqlite-go
+  template:
+    metadata:
+      labels:
+        app: use-rqlite-go
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
+      containers:
+        - name: use-rqlite-go
+          image: ghcr.io/rgl/use-rqlite-go:0.0.1
+          args:
+            - --rqlite-url=http://rqlite
+          ports:
+            - name: http
+              containerPort: 4000
+          resources:
+            requests:
+              memory: 20Mi
+              cpu: '0.1'
+            limits:
+              memory: 20Mi
+              cpu: '0.1'
+          env:
+            # configure the go runtime to honour the k8s memory and cpu
+            # resource limits.
+            # NB resourceFieldRef will cast the limits to bytes and integer
+            #    number of cpus (rounding up to the nearest integer).
+            # see https://pkg.go.dev/runtime
+            # see https://www.riverphillips.dev/blog/go-cfs/
+            # see https://github.com/golang/go/issues/33803
+            # see https://github.com/traefik/traefik-helm-chart/pull/1029
+            - name: GOMEMLIMIT
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.memory
+            - name: GOMAXPROCS
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.cpu

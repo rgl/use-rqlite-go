@@ -1,0 +1,4 @@
+tmp/
+rqlite-values.yml
+index.html
+kubeconfig.yml
