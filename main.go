@@ -97,7 +97,7 @@ create table if not exists quote (
 	author	text	not null,
 	text	text	not null,
 	url		text	null
-)
+) strict
 `)
 	if err != nil {
 		return fmt.Errorf("failed to create the quote table: %w", err)
