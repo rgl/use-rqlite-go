@@ -36,7 +36,7 @@ helm repo add rqlite https://rqlite.github.io/helm-charts
 helm repo update
 # search the chart and app versions, e.g.: in this case we are using:
 #   NAME           CHART VERSION  APP VERSION  DESCRIPTION                                       
-#   rqlite/rqlite  1.10.0         8.26.0       The lightweight, distributed relational databas...
+#   rqlite/rqlite  1.10.0         8.26.2       The lightweight, distributed relational databas...
 helm search repo rqlite/rqlite --versions | head -3
 # set the rqlite configuration.
 cat >rqlite-values.yml <<EOF
