@@ -34,7 +34,8 @@ docker compose exec rqlite rqlite
 
 Execute some commands:
 
-```
+```sql
+PRAGMA compile_options -- show enabled extensions (e.g. fts, geopoly), et al.
 .status
 .nodes
 .schema
@@ -87,7 +88,8 @@ kubectl exec --quiet --stdin --tty statefulset/rqlite -- rqlite
 
 Execute some commands:
 
-```
+```sql
+PRAGMA compile_options -- show enabled extensions (e.g. fts, geopoly), et al.
 .status
 .nodes
 .schema
