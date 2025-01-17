@@ -1,6 +1,6 @@
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#service-v1-core
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/initial-design.md
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/ttl.md
 apiVersion: v1
@@ -18,9 +18,9 @@ spec:
       targetPort: http
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deployment-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#deployment-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#container-v1-core
 apiVersion: apps/v1
 kind: Deployment
 metadata:

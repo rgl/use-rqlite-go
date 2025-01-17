@@ -4,7 +4,7 @@ source "$SCRIPT_PATH/env.sh"
 
 # see https://github.com/rqlite/helm-charts/releases
 # renovate: datasource=helm depName=rqlite registryUrl=https://rqlite.github.io/helm-charts
-rqlite_chart_version='1.10.0'
+rqlite_chart_version='1.15.0'
 
 echo "Creating $CLUSTER_NAME k8s..."
 kind create cluster \
@@ -26,7 +26,7 @@ while ! wget -q --spider http://localhost:5001/v2; do sleep 1; done;
 
 echo 'Connecting the docker registry to the kind k8s network...'
 # TODO isolate the network from other kind clusters with KIND_EXPERIMENTAL_DOCKER_NETWORK.
-#      see https://github.com/kubernetes-sigs/kind/blob/v0.21.0/pkg/cluster/internal/providers/docker/network.go
+#      see https://github.com/kubernetes-sigs/kind/blob/v0.26.0/pkg/cluster/internal/providers/docker/network.go
 docker network connect \
     kind \
     "$CLUSTER_NAME-registry"
@@ -36,7 +36,7 @@ helm repo add rqlite https://rqlite.github.io/helm-charts
 helm repo update
 # search the chart and app versions, e.g.: in this case we are using:
 #   NAME           CHART VERSION  APP VERSION  DESCRIPTION                                       
-#   rqlite/rqlite  1.10.0         8.26.2       The lightweight, distributed relational databas...
+#   rqlite/rqlite  1.15.0         8.36.5       The lightweight, distributed relational databas...
 helm search repo rqlite/rqlite --versions | head -3
 # set the rqlite configuration.
 cat >rqlite-values.yml <<EOF
