@@ -40,7 +40,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: use-rqlite-go
-          image: ghcr.io/rgl/use-rqlite-go:0.0.2
+          image: ghcr.io/rgl/use-rqlite-go:0.0.3
           args:
             - --rqlite-url=http://rqlite
           ports:
