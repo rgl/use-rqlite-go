@@ -73,6 +73,12 @@ export KUBECONFIG="$PWD/kubeconfig.yml"
 kubectl get nodes -o wide
 ```
 
+Build and use the use-rqlite-go example:
+
+```bash
+./build.sh && ./deploy.sh && ./test.sh && xdg-open index.html
+```
+
 Start the rqlite client:
 
 ```bash
@@ -89,12 +95,6 @@ select sqlite_version()
 insert into quote(id, author, text, url) values(100, "Hamlet", "To be, or not to be, that is the question.", null)
 select text || ' -- ' || author as quote from quote
 .exit
-```
-
-Build and use the use-rqlite-go example:
-
-```bash
-./build.sh && ./deploy.sh && ./test.sh && xdg-open index.html
 ```
 
 Destroy the local test infrastructure:
