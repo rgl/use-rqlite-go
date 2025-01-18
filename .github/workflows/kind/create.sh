@@ -3,6 +3,7 @@ SCRIPT_PATH="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 source "$SCRIPT_PATH/env.sh"
 
 # see https://github.com/rqlite/helm-charts/releases
+# see https://artifacthub.io/packages/helm/rqlite/rqlite
 # renovate: datasource=helm depName=rqlite registryUrl=https://rqlite.github.io/helm-charts
 rqlite_chart_version='1.15.0'
 
