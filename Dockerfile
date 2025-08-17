@@ -1,14 +1,14 @@
-# syntax=docker.io/docker/dockerfile:1.14
+# syntax=docker.io/docker/dockerfile:1.17
 
-FROM golang:1.24.0-bookworm AS builder
+FROM golang:1.25.0-trixie AS builder
 WORKDIR /src
 COPY go.* ./
 RUN go mod download
 COPY *.go ./
 RUN CGO_ENABLED=0 go build -ldflags="-s"
 
-# NB we use the buster-slim (instead of scratch) image so we can enter the container to execute bash etc.
-FROM debian:bookworm-slim
+# NB we use the trixie-slim (instead of scratch) image so we can enter the container to execute bash etc.
+FROM debian:trixie-slim
 RUN <<EOF
 #!/bin/bash
 set -euxo pipefail

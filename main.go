@@ -165,7 +165,7 @@ func insertQuote(conn *gorqlite.Connection, quote *Quote) error {
 	_, err := conn.WriteOneParameterized(
 		gorqlite.ParameterizedStatement{
 			Query:     "insert or ignore into quote(id, author, text, url) values(?, ?, ?, ?)",
-			Arguments: []interface{}{quote.ID, quote.Author, quote.Text, quote.URL},
+			Arguments: []any{quote.ID, quote.Author, quote.Text, quote.URL},
 		})
 	return err
 }
