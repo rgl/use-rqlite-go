@@ -54,7 +54,7 @@ wget -qO- http://localhost:4000
 Destroy the environment:
 
 ```bash
-docker compose down --volumes --remove-orphans
+docker compose down --volumes --remove-orphans --timeout=0
 ```
 
 ## Usage (Kubernetes)

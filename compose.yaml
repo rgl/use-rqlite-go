@@ -17,7 +17,8 @@ services:
     restart: on-failure
   use-rqlite:
     depends_on:
-      - rqlite
+      rqlite:
+        condition: service_healthy
     build: .
     ports:
       - 4000:4000
