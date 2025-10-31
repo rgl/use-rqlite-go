@@ -1,6 +1,6 @@
-# syntax=docker.io/docker/dockerfile:1.17
+# syntax=docker.io/docker/dockerfile:1.19
 
-FROM golang:1.25.0-trixie AS builder
+FROM golang:1.25.3-trixie AS builder
 WORKDIR /src
 COPY go.* ./
 RUN go mod download
