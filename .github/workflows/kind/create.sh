@@ -7,6 +7,11 @@ source "$SCRIPT_PATH/env.sh"
 # renovate: datasource=helm depName=rqlite registryUrl=https://rqlite.github.io/helm-charts
 rqlite_chart_version='2.0.0'
 
+# see https://hub.docker.com/_/registry
+# see https://github.com/distribution/distribution/releases
+# renovate: datasource=docker depName=registry
+registry_image_version='3.0.0'
+
 echo "Creating $CLUSTER_NAME k8s..."
 kind create cluster \
     --name="$CLUSTER_NAME" \
@@ -19,11 +24,15 @@ docker run \
     -d \
     --restart=unless-stopped \
     --name "$CLUSTER_NAME-registry" \
-    --env REGISTRY_HTTP_ADDR=0.0.0.0:5001 \
+    --volume "$SCRIPT_PATH/registry-config.yml:/etc/distribution/config.yml:ro" \
+    --env OTEL_SDK_DISABLED=true \
+    --env OTEL_TRACES_EXPORTER=none \
+    --env OTEL_METRICS_EXPORTER=none \
+    --env OTEL_LOGS_EXPORTER=none \
     -p 5001:5001 \
-    registry:2.8.3 \
+    "registry:$registry_image_version" \
     >/dev/null
-while ! wget -q --spider http://localhost:5001/v2; do sleep 1; done;
+while ! wget -q --spider http://localhost:5001/v2/; do sleep 1; done;
 
 echo 'Connecting the docker registry to the kind k8s network...'
 # TODO isolate the network from other kind clusters with KIND_EXPERIMENTAL_DOCKER_NETWORK.
