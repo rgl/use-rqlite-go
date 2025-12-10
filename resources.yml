@@ -1,6 +1,6 @@
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#service-v1-core
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/initial-design.md
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/ttl.md
 apiVersion: v1
@@ -18,9 +18,9 @@ spec:
       targetPort: http
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#deployment-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#deployment-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,7 +40,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: use-rqlite-go
-          image: ghcr.io/rgl/use-rqlite-go:0.0.7
+          image: ghcr.io/rgl/use-rqlite-go:0.0.8
           args:
             - --rqlite-url=http://rqlite
           ports:
@@ -69,7 +69,7 @@ spec:
             # NB since go 1.25.0 this is now automatically handled by the go
             #    runtime.
             #    see https://go.dev/doc/go1.25#container-aware-gomaxprocs
-            #    see https://github.com/golang/go/blob/go1.25.4/src/runtime/cgroup_linux.go#L11-L26
+            #    see https://github.com/golang/go/blob/go1.25.5/src/runtime/cgroup_linux.go#L11-L26
             # - name: GOMAXPROCS
             #   valueFrom:
             #     resourceFieldRef:
