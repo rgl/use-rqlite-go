@@ -4,14 +4,14 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - name: Install kind
         uses: helm/kind-action@v1.13.0
         with:
           # renovate: datasource=github-releases depName=kubernetes-sigs/kind
-          version: v0.30.0
+          version: v0.31.0
           install_only: true
       - name: Create the test infrastructure
         run: ./.github/workflows/kind/create.sh
@@ -25,7 +25,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     name: Release
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       packages: write
     steps:

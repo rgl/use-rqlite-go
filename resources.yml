@@ -1,6 +1,6 @@
 ---
 # see https://kubernetes.io/docs/concepts/services-networking/service/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#service-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#service-v1-core
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/initial-design.md
 # see https://github.com/kubernetes-incubator/external-dns/blob/v0.5.16/docs/ttl.md
 apiVersion: v1
@@ -18,9 +18,9 @@ spec:
       targetPort: http
 ---
 # see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#deployment-v1-apps
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podtemplatespec-v1-core
-# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#deployment-v1-apps
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podtemplatespec-v1-core
+# see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#container-v1-core
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,7 +40,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: use-rqlite-go
-          image: ghcr.io/rgl/use-rqlite-go:0.0.8
+          image: ghcr.io/rgl/use-rqlite-go:0.0.9
           args:
             - --rqlite-url=http://rqlite
           ports:

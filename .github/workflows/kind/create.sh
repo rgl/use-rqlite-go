@@ -36,7 +36,7 @@ while ! wget -q --spider http://localhost:5001/v2/; do sleep 1; done;
 
 echo 'Connecting the docker registry to the kind k8s network...'
 # TODO isolate the network from other kind clusters with KIND_EXPERIMENTAL_DOCKER_NETWORK.
-#      see https://github.com/kubernetes-sigs/kind/blob/v0.30.0/pkg/cluster/internal/providers/docker/network.go
+#      see https://github.com/kubernetes-sigs/kind/blob/v0.31.0/pkg/cluster/internal/providers/docker/network.go
 docker network connect \
     kind \
     "$CLUSTER_NAME-registry"
@@ -51,7 +51,7 @@ helm search repo rqlite/rqlite --versions | head -3
 # set the rqlite configuration.
 cat >rqlite-values.yml <<EOF
 image:
-  tag: 9.3.5
+  tag: 9.3.6
 replicaCount: 3
 persistence:
   size: 1Gi

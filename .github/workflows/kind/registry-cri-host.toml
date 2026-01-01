@@ -1,0 +1,2 @@
+[host.'http://use-rqlite-go-registry:5001']
+capabilities = ['pull', 'resolve']

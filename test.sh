@@ -4,8 +4,6 @@ source "$SCRIPT_PATH/.github/workflows/kind/env.sh"
 
 kubectl exec \
     --quiet \
-    --stdin \
-    --tty \
     "$(
         kubectl get pods \
             -l app=use-rqlite-go \
