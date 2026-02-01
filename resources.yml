@@ -40,7 +40,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: use-rqlite-go
-          image: ghcr.io/rgl/use-rqlite-go:0.0.9
+          image: ghcr.io/rgl/use-rqlite-go:0.0.10
           args:
             - --rqlite-url=http://rqlite
           ports:
@@ -69,7 +69,7 @@ spec:
             # NB since go 1.25.0 this is now automatically handled by the go
             #    runtime.
             #    see https://go.dev/doc/go1.25#container-aware-gomaxprocs
-            #    see https://github.com/golang/go/blob/go1.25.5/src/runtime/cgroup_linux.go#L11-L26
+            #    see https://github.com/golang/go/blob/go1.25.6/src/runtime/cgroup_linux.go#L11-L26
             # - name: GOMAXPROCS
             #   valueFrom:
             #     resourceFieldRef:
