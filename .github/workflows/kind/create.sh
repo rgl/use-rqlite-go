@@ -10,7 +10,7 @@ rqlite_chart_version='2.0.0'
 # see https://hub.docker.com/_/registry
 # see https://github.com/distribution/distribution/releases
 # renovate: datasource=docker depName=registry
-registry_image_version='3.0.0'
+registry_image_version='3.1.1'
 
 echo "Creating $CLUSTER_NAME k8s..."
 kind create cluster \
@@ -51,7 +51,7 @@ helm search repo rqlite/rqlite --versions | head -3
 # set the rqlite configuration.
 cat >rqlite-values.yml <<EOF
 image:
-  tag: 9.3.18
+  tag: 10.0.2
 replicaCount: 3
 persistence:
   size: 1Gi

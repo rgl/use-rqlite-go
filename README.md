@@ -51,6 +51,12 @@ Get a quote from the service:
 wget -qO- http://localhost:4000
 ```
 
+Access the [rqlite console](https://rqlite.io/docs/ui/):
+
+```bash
+xdg-open http://localhost:4001/console
+```
+
 Destroy the environment:
 
 ```bash

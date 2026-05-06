@@ -1,5 +1,5 @@
 module use-rqlite-go
 
-go 1.25.6
+go 1.26.2
 
-require github.com/rqlite/gorqlite v0.0.0-20250609141355-ac86a4a1c9a8
+require github.com/rqlite/gorqlite v0.0.0-20260504155303-50d445fd0ab9

@@ -5,8 +5,13 @@ services:
     # see https://hub.docker.com/r/rqlite/rqlite
     # see https://github.com/rqlite/rqlite/blob/master/Dockerfile
     # see https://rqlite.io/docs/guides/monitoring-rqlite/
-    image: docker.io/rqlite/rqlite:9.3.18
+    image: docker.io/rqlite/rqlite:10.0.2
     hostname: rqlite
+    ports:
+      # the console.
+      # access at http://localhost:4001/console
+      # see https://rqlite.io/docs/ui/
+      - 4001:4001
     volumes:
       - rqlite:/rqlite/file
     healthcheck:
