@@ -5,7 +5,7 @@ services:
     # see https://hub.docker.com/r/rqlite/rqlite
     # see https://github.com/rqlite/rqlite/blob/master/Dockerfile
     # see https://rqlite.io/docs/guides/monitoring-rqlite/
-    image: docker.io/rqlite/rqlite:10.0.2
+    image: docker.io/rqlite/rqlite:10.2.0
     hostname: rqlite
     ports:
       # the console.

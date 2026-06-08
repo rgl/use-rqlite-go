@@ -2,7 +2,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 kind: Cluster
 nodes:
   - role: control-plane
-    image: kindest/node:v1.35.1
+    image: kindest/node:v1.36.1
     extraMounts:
       - hostPath: .github/workflows/kind/registry-cri-host.toml
         containerPath: /etc/containerd/hosts/localhost_5001_/hosts.toml
