@@ -51,7 +51,7 @@ helm search repo rqlite/rqlite --versions | head -3
 # set the rqlite configuration.
 cat >rqlite-values.yml <<EOF
 image:
-  tag: 10.2.0
+  tag: 10.2.7
 replicaCount: 3
 persistence:
   size: 1Gi
